@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Js Homework\\Js Fundamentals\\Equal Arrays.js"
+            "program": "${file}"
         }
     ]
 }

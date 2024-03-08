@@ -4,12 +4,15 @@ function spiralMatrix(rows, cols) {
     matrix.push([]);
   }
 
+  // make variables to track the start and end of the rows and columns
+  //basically which side is fully filled
   let counter = 1;
   let startRow = 0;
   let endRow = rows - 1;
   let startCol = 0;
   let endCol = cols - 1;
-
+  // start iterating on each side each cycle
+  // and fill the matrix with the counter
   while (startRow <= endRow || startCol <= endCol) {
     for (let i = startCol; i <= endCol; i++) {
       matrix[startRow][i] = counter++;

@@ -1,12 +1,12 @@
-function checkIfNumIsPalindrome(num) {
-  let numArr = num.toString().split("").map(Number);
-  let reversedNumArr = numArr.slice().reverse();
-  let isPalindrome = true;
-  for (let i = 0; i < numArr.length; i++) {
-    if (numArr[i] !== reversedNumArr[i]) {
-      isPalindrome = false;
-      break;
-    }
+function checkPalindromeIntegers(input) {
+  for (let i = 0; i < input.length; i++) {
+    let currentNum = input[i];
+    let reversedNum = Number(
+      currentNum.toString().split("").reverse().join("")
+    );
+    console.log(currentNum === reversedNum);
   }
-  return isPalindrome;
 }
+
+checkPalindromeIntegers([123, 323, 421, 121]); // false, true, false, true
+checkPalindromeIntegers([32, 2, 232, 1010]); // false, true, true, true

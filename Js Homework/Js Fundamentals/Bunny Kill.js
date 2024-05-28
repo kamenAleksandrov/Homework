@@ -31,15 +31,53 @@
 // }
 
 function bunnyKill(matrix) {
-      let bombsIndexes = matrix.pop().split(" ");
-      let hangar = matrix.map((row) => row.split(" ").map(Number));
-      let damage = 0;
-      let kills = 0;
-    //   console.log(hangar);
-    //   console.log(bombsIndexes);
-    for (let i = 0; i < bombsIndexes.length; i++) {
-        let bomb
+  let bombsIndexes = matrix.pop().split(" ");
+  let hangar = matrix.map((row) => row.split(" ").map(Number));
+  let damage = 0;
+  let kills = 0;
+  let searchForBombs = bombsIndexes.length;
+  //   console.log(hangar);
+  //   console.log(bombsIndexes);
+  for (let i = 0; i < searchForBombs; i++) {
+    let bomb = bombsIndexes.shift().split(",");
+    let col = bomb[0];
+    let row = bomb[1];
+    let bombDamage = hangar[bomb[0]][bomb[1]];
+    // console.log(bomb);
+    if (hangar[col][row] > 0) {
+      damage += hangar[col][row];
+      kills++;
+      for (let k = 0; k < 3; k++) {
+        for (let z = 0; z < 3; z++) {
+          if (
+            hangar[col - 1 + k] == undefined ||
+            [row - 1 + z] == undefined
+          ) {
+            hangar[col][row] -= bombDamage;
+            if (hangar[col][row] < 0) {
+              hangar[col][row] = 0;
+            }
+          } else {
+            hangar[col - 1 + k][row - 1 + z] -= bombDamage;
+            if (hangar[col - 1 + k][row - 1 + z] < 0) {
+              hangar[col - 1 + k][row - 1 + z] = 0;
+            }
+          }
+        }
+      }
     }
+  }
+  for (let row of hangar){
+    for (let cell of row){
+      if (cell > 0){
+        damage += cell;
+        kills++;
+      }
+    }
+  }
+  // console.log(hangar.join("\n"));
+  console.log(damage);
+  console.log(kills);
 }
 
 bunnyKill([
